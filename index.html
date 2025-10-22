@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shams & Kulsum — Wedding Invitation</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===============================
+       Moonlit Cherry Blossom Theme
+       Single-file (HTML + CSS + JS)
+       =============================== */
+
+    :root {
+      --accent: #e94f7a;
+      --accent-deep: #6a0028;
+      --text-light: #f6f6f6;
+      --shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: "Poppins", sans-serif;
+      color: var(--text-light);
+
+      background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.6)),
+        url('https://images.unsplash.com/photo-1457089328109-e5d9bd499191?q=80&w=2000&auto=format&fit=crop')
+        center/cover fixed no-repeat;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: -1;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px;
+      height: 68px;
+    }
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      color: #fff;
+    }
+    .brand .heart { color: var(--accent); }
+    .navlinks {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .navlinks a {
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .navlinks a:hover, .navlinks a.active {
+      color: var(--accent);
+    }
+    .menu-btn {
+      display: none;
+      border: 0;
+      background: transparent;
+      font-size: 26px;
+      color: #fff;
+    }
+    @media(max-width: 880px) {
+      .menu-btn { display: block; }
+      .navlinks {
+        position: fixed;
+        inset: 68px 0 auto 0;
+        background: rgba(0,0,0,0.85);
+        flex-direction: column;
+        padding: 20px;
+        display: none;
+      }
+      .navlinks.open { display: flex; }
+    }
+
+    /* Petal Animation */
+    .petal {
+      position: fixed;
+      top: -40px;
+      width: 12px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 90%;
+      opacity: 0.85;
+      transform: rotate(15deg);
+      animation: fall linear forwards;
+      z-index: 40;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    @keyframes fall {
+      0% { transform: translateY(-40px) translateX(0) rotate(0deg); }
+      100% { transform: translateY(110vh) translateX(var(--drift, 80px)) rotate(360deg); }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 55vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 0;
+    }
+    .hero .card {
+      background: rgba(0,0,0,0.5);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 30px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .names {
+      font-family: "Great Vibes", cursive;
+      font-size: 58px;
+      color: #fff;
+      margin: 10px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #fff;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+    .hero p {
+      color: #ddd;
+    }
+
+    .section { padding: 70px 0; }
+    .container { width: 100%; max-width: 1100px; margin: auto; padding: 0 20px; }
+    .rule-title {
+      font-family: "Great Vibes", cursive;
+      font-size: 48px;
+      text-align: center;
+      color: #fff;
+      margin: 0 0 24px;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .about-card {
+      background: rgba(0,0,0,0.55);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .about-card img {
+  width: 100%;
+  height: 400px;             /* fixed height for consistent cards */
+  object-fit: cover;         /* neatly fills the box */
+  object-position: top center; /* keeps subject centered */
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 768px) {
+  .about-card img {
+    height: 300px;
+  }
+}
+
+    .about-card .cap {
+      padding: 16px 18px;
+    }
+    .about-card h4 {
+      margin: 0 0 6px;
+      font-family: "Playfair Display", serif;
+      color: var(--accent);
+    }
+    .about-card p {
+      margin: 0;
+      color: #e0d5d8;
+      font-size: 14px;
+    }
+    @media(max-width:900px) { .about-grid { grid-template-columns:1fr; } }
+
+    /* Events */
+    .event-cards {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 20px;
+    }
+    .card {
+      background: rgba(0,0,0,0.55);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .card img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+    .card .pad {
+      padding: 16px;
+    }
+    .card h4 {
+      margin: 0 0 6px;
+      font-family: "Playfair Display", serif;
+      color: var(--accent);
+    }
+    .card p {
+      margin: 0;
+      color: #e0e0e0;
+    }
+    @media(max-width:900px) { .event-cards { grid-template-columns:1fr; } }
+
+    /* Families */
+    .family-title {
+      font-family: "Great Vibes", cursive;
+      font-size: 40px;
+      color: var(--accent);
+      text-align: center;
+      margin: 0 0 14px;
+    }
+    /* Families */
+.family-title {
+  font-family: "Great Vibes", cursive;
+  font-size: 40px;
+  color: var(--accent);
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.family-col {
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  min-height: 180px; /* 🔹 ensures consistent height without being too big */
+}
+
+.family-col h5 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  color: #f98ba6;
+  font-family: "Playfair Display", serif;
+}
+
+.family-col ul {
+  margin: 0;
+  padding-left: 18px;
+  flex-grow: 1; /* ensures list expands evenly */
+}
+
+.family-col li {
+  margin: 4px 0;
+  color: #f6f6f6;
+  line-height: 1.4;
+}
+
+    @media(max-width:900px) { .cols { grid-template-columns:1fr; } }
+
+    /* RSVP */
+    .form {
+      max-width: 760px;
+      margin: auto;
+      background: rgba(0,0,0,0.55);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .input, .textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      outline: none;
+    }
+    .textarea { height: 150px; resize: vertical; }
+    .btn {
+      background: linear-gradient(90deg, #e94f7a, #b0163f);
+      color: #fff;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 22px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(233,79,122,0.4);
+    }
+    .btn:hover { filter: brightness(1.1); }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 80px 20px;
+      color: #fff;
+      background:
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+        url('https://images.unsplash.com/photo-1457089328109-e5d9bd499191?q=80&w=2000&auto=format&fit=crop')
+        center/cover no-repeat;
+      background-attachment: fixed;
+    }
+    .footer h2 {
+      font-family: "Great Vibes", cursive;
+      font-size: 60px;
+      margin: 0;
+      color: #fff;
+    }
+    .footer p { opacity: 0.9; }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="nav">
+      <div class="brand">Shams <span class="heart">❤</span> Kulsum</div>
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <nav id="menu" class="navlinks">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#event">Events</a>
+        <a href="#families">Families</a>
+        <a href="#rsvp">RSVP</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="card">
+      <div class="badge">JOIN US • Monday, 03 November 2025</div>
+      <div class="names">Shams Tabrez &amp; Kulsum Khatoon</div>
+      <p>We joyfully invite you to celebrate our wedding beneath the cherry moonlight.</p>
+    </div>
+  </section>
+  
+
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="rule-title">About Us</h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <img src="dijan.jpg" alt="Groom">
+          <div class="cap">
+            <h4>About Shams</h4>
+            <p>A kind-hearted, warm soul who values family, faith, and laughter.</p>
+          </div>
+        </div>
+        <div class="about-card">
+          <img src="dijan2.jpg" alt="Bride">
+          <div class="cap">
+            <h4>About Kulsum</h4>
+            <p>Graceful and compassionate, she fills every moment with light and love.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section id="event" class="section">
+    <article class="card" style="text-align:center; background:rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.2); border-radius:20px; overflow:hidden; box-shadow:0 8px 18px rgba(0,0,0,0.4);">
+  <img src="dijan4.jpg" 
+       alt="Milad" 
+       style="height:230px; object-fit:cover; width:100%; border-bottom:2px solid rgba(255,255,255,0.1);">
+  <div class="pad" style="padding:20px;">
+    <h4 style="font-family:'Great Vibes',cursive; color:#ff7c9e; font-size:34px; margin:10px 0;">Milaad</h4>
+    <p style="color:#f1e7ea; font-size:15px; line-height:1.6; margin:0 0 18px;">
+      Milad is an Islamic wedding ceremony where friends, family, and relatives recite 
+      Islamic blessings for the bride and groom. It usually takes place at both houses, 
+      symbolizing peace and divine blessings for the couple.
+    </p>
+    <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:14px 0; color:#ffeaf0; font-size:14.5px;">
+      <strong>📍 Karam Ali Hata</strong><br>
+      Monday, 03 November 2025<br>
+      ⏰ 06:30 PM – 09:30 PM
+    </div>
+  </div>
+</article>
+        <article class="card" style="text-align:center; background:rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.2); border-radius:20px; overflow:hidden; box-shadow:0 8px 18px rgba(0,0,0,0.4);">
+  <img src="dijan3.jpg"
+       alt="Barat & Nikah"
+       style="height:230px; object-fit:cover; width:100%; border-bottom:2px solid rgba(255,255,255,0.1);">
+  <div class="pad" style="padding:20px;">
+    <h4 style="font-family:'Great Vibes',cursive; color:#ff7c9e; font-size:34px; margin:10px 0;">Barat & Nikah</h4>
+    <blockquote style="font-size:15px; color:#ffeaf0; font-style:italic; line-height:1.6; margin:0 auto 20px; max-width:90%;">
+      <p>In a hadith, Prophet Muhammad (ﷺ) said:</p>
+      <p style="font-size:18px; color:#ffd6e0; margin:10px 0;">
+        النِّكَاحُ مِنْ سُنَّتِي فَمَنْ لَمْ يَعْمَلْ بِسُنَّتِي فَلَيْسَ مِنِّي وَتَزَوَّجُوا فَإِنِّي مُكَاثِرٌ بِكُمُ الأُمَمَ
+      </p>
+      <p>“Marriage is part of my sunnah, and whoever does not follow my sunnah has nothing to do with me.  
+      Get married, for I am heartened by your great numbers before the nations (of other Prophets).”  
+      <br><em>(Sunan Ibn Majah)</em></p>
+    </blockquote>
+    <p style="color:#f1e7ea; font-size:15px; line-height:1.6; margin:0 0 18px;">
+      The Nikah and Barat ceremony marks the sacred bond of marriage, blessed by family, faith, and love.
+    </p>
+    <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:14px 0; color:#ffeaf0; font-size:14.5px;">
+      <strong>📍 Karam Ali Hata</strong><br>
+      Tuesday, 04 November 2025<br>
+      ⏰ 09:00 AM – 05:00 PM
+    </div>
+  </div>
+</article>
+
+
+
+  <!-- Families -->
+  <section id="families" class="section">
+    <div class="container">
+      <h2 class="rule-title">Families</h2>
+      <h3 class="family-title">Shams Tabrez’s Family</h3>
+      <div class="cols">
+        <div class="family-col">
+          <h5>Parents</h5>
+          <ul><li>Father: Mohammed Sahud Khan</li><li>Mother: Shahnaz Khatoon</li></ul>
+        </div>
+        <div class="family-col">
+          <h5>Siblings</h5>
+          <ul><li>Brother: Mohammad Rustam Khan</li><li>Sisters: Naziya &amp; Sabba Khatoon</li></ul>
+        </div>
+        <div class="family-col">
+          <h5>Uncles</h5>
+          <ul><li>Mohammad Ayub Khan</li><li>Mohammad Amir Khan</li><li>Aftab Alam</li><li>Mohammad Raja Khan</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+      </div>
+      
+    <!-- Kulsum's Family -->
+    <h3 class="family-title">Kulsum’s Family</h3>
+    <div class="cols">
+      <div class="family-col">
+        <h5>Parents</h5>
+        <ul>
+          <li>Father: Mehndi Hasan Khan (Raju Khan)</li>
+          <li>Mother: Bismillah Khatoon</li>
+        </ul>
+      </div>
+      <div class="family-col">
+        <h5>Brothers</h5>
+        <ul>
+          <li>Jainul baddin Khan</li>
+          <li>Abid Hussain Khan</li>
+          <li>Akbar Ali Khan</li>
+          <li>Abbas Ali Khan</li>
+          <li>Naushad Ali Khan</li>
+          <li>Dilshad Ali Khan</li>
+          <li>Arshad Ali Khan</li>
+        </ul>
+      </div>
+      <div class="family-col">
+        <h5>Address</h5>
+        <ul>
+          <li>Vill &amp; Post – Mohiuddinpur</li>
+          <li>District – Siwan (Bihar)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- RSVP -->
+  <!-- Contact Information Section -->
+<section id="contact" class="section" style="text-align:center;">
+  <div class="container">
+    <h2 class="rule-title">Contact Information</h2>
+    <div style="
+      max-width:700px;
+      margin:30px auto;
+      background:rgba(0,0,0,0.55);
+      border:1px solid rgba(255,255,255,0.25);
+      border-radius:18px;
+      box-shadow:0 8px 18px rgba(0,0,0,0.3);
+      padding:30px 20px;
+      color:#fff;
+      backdrop-filter:blur(6px);
+    ">
+      <p style="font-size:18px; margin-bottom:20px; color:#ffd9e1;">
+        We’d love to hear from you! For any questions or blessings, reach out to us below 🌸
+      </p>
+      <div style="font-family:'Playfair Display',serif; font-size:17px; line-height:1.8;">
+        <p><strong>📍 Venue:</strong> Karam Ali Hata, Tarwan, Siwan (Bihar)</p>
+        <p><strong>📞 Contact:</strong> 
+          <a href="tel:9955690220" style="color:#ffd9e1; text-decoration:none;">9955690220</a> &nbsp;•&nbsp; 
+          <a href="tel:7024709735" style="color:#ffd9e1; text-decoration:none;">7024709735</a>
+        </p>
+        <p><strong>🕊 Firm:</strong> Abu Talib General Store</p>
+        <p><strong>💌 Email:</strong> 
+          <a href="mailto:example@email.com" style="color:#ffd9e1; text-decoration:none;">example@email.com</a>
+        </p>
+      </div>
+
+      <div style="margin-top:20px; position:relative; width:100%; padding-bottom:56.25%; /* 16:9 ratio */ height:0; overflow:hidden; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.4);">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.2133789484633!2d84.35820989999999!3d26.2547373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3992fd001ba043df%3A0x93d8222810238aee!2sAbu%20Talib%20General%20Store!5e0!3m2!1sen!2snp!4v1761023465457!5m2!1sen!2snp"
+    style="border:0; position:absolute; top:0; left:0; width:100%; height:100%; border-radius:12px;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <h2>Thank You</h2>
+    <p>For being with us under the cherry moon</p>
+    <p>Venue: Karam Ali Hata, Tarwan, Siwan (Bihar)</p>
+    <p>Contact: 9955690220 / 7024709735</p>
+    <p>© Shams &amp; Kulsum — 2025</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('open');
+    }
+    (function petals(){
+      const PETALS = 25;
+      for (let i = 0; i < PETALS; i++) addPetal();
+      function addPetal(){
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.left = (Math.random() * 100) + 'vw';
+        p.style.animationDuration = (10 + Math.random() * 12) + 's';
+        p.style.animationDelay = (Math.random() * -20) + 's';
+        p.style.setProperty('--drift', ((Math.random()*2 - 1)*160) + 'px');
+        document.body.appendChild(p);
+        p.addEventListener('animationend', () => {
+          p.remove();
+          setTimeout(addPetal, 300);
+        }, { once:true });
+      }
+    })();
+  </script>
+  <!-- Background Music -->
+<div id="music-player" style="display:none;"></div>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  let player;
+
+  // Called automatically by YouTube API
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('music-player', {
+      height: '0',
+      width: '0',
+      videoId: 'CB0o2cGq8Ow', // 🌸 your YouTube song ID
+      playerVars: {
+        autoplay: 1,
+        loop: 1,
+        mute: 1,           // start muted to bypass restrictions
+        playlist: 'CB0o2cGq8Ow',
+        start: 20          // skip first 20 seconds (optional)
+      },
+      events: { 'onReady': onPlayerReady }
+    });
+  }
+
+  function onPlayerReady(event) {
+    // Try autoplay immediately
+    event.target.playVideo();
+
+    // After a delay, gradually fade in sound
+    setTimeout(() => {
+      fadeInVolume(event.target, 0, 20); // fade to volume 20
+    }, 2000);
+  }
+
+  // Gradually increase volume for a soft entry
+  function fadeInVolume(player, startVol, endVol) {
+    let vol = startVol;
+    const fade = setInterval(() => {
+      if (vol < endVol) {
+        vol += 1;
+        player.setVolume(vol);
+      } else {
+        clearInterval(fade);
+        player.unMute(); // unmute after fade
+      }
+    }, 200); // adjust for speed of fade (ms)
+  }
+</script>
+
+</body>
+</html>
