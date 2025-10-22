@@ -593,9 +593,18 @@
     })();
   </script>
   <!-- Background Music -->
-<div id="music-player" style="display:none;"></div>
+<div id="music-player"
+     style="position:fixed; bottom:10px; right:10px; width:1px; height:1px; opacity:0; pointer-events:none;">
+</div>
+
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
+  document.addEventListener('click', () => {
+  if (player && player.playVideo) {
+    player.playVideo();
+  }
+}, { once: true });
+
   let player;
 
   // Called automatically by YouTube API
@@ -609,7 +618,7 @@
         loop: 1,
         mute: 1,           // start muted to bypass restrictions
         playlist: 'CB0o2cGq8Ow',
-        start: 20          // skip first 20 seconds (optional)
+        start: 0          // skip first 20 seconds (optional)
       },
       events: { 'onReady': onPlayerReady }
     });
@@ -638,7 +647,17 @@
       }
     }, 200); // adjust for speed of fade (ms)
   }
+  function onPlayerReady(event) {
+  setTimeout(() => {
+    event.target.playVideo();
+  }, 500); // wait half a second
+  setTimeout(() => {
+    fadeInVolume(event.target, 0, 20);
+  }, 2000);
+}
+
 </script>
 
 </body>
 </html>
+
